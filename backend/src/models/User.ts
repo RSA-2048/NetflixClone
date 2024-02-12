@@ -1,5 +1,6 @@
 import mongoose, { Model, Schema, model } from "mongoose";
 import crypto, { BinaryLike } from 'crypto'
+
 interface IUser {
     username: String,
     email: String,
