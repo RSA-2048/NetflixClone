@@ -1,15 +1,15 @@
-import { Request, Response } from 'express';
-import { data } from "../data"
+import { data } from "../data";
 import Content from "../models/Content";
 import User from "../models/User";
+import express, { Request, Response } from "express";
 
-const seedData = async (req: Request, res: Response) => {
+
+
+export const seedData = async (req: Request, res: Response) => {
     await User.deleteMany();
     await Content.deleteMany();
 
     const contents = await Content.insertMany(data.content);
-    const users = await User.insertMany(data.users);
+    const users = await User.insertMany(data.users);////lllll
     res.send({ contents, users });
-};
-
-export default seedData;
+}
