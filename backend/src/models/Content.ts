@@ -14,7 +14,7 @@ const contentSchema = new mongoose.Schema({
     limit: { type: String, required: true },
     genre: { type: String, required: true },
     isSeries: { type: Boolean, required: true }
-
+    // git
 }, { timestamps: true })
 
 const Content = mongoose.model("Content", contentSchema);
