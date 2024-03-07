@@ -33,3 +33,5 @@ mongoose.connect(mongoConnect)
       console.log("listening to port " + PORT)
     })
   }).catch(err => console.log(err.message));
+
+export default app;
