@@ -1,4 +1,3 @@
-import React from 'react'
 import ContentCard from '../HomePage/ContentCard'
 import { IContent } from '@/Models/IContent'
 
