@@ -12,7 +12,6 @@ const userReducer = (state: IUserState, action: MyAction) => {
       return { ...state, userInfo: payload };
     }
     case USER_SIGNOUT: {
-      Cookies.remove("token");
       return { ...state, userInfo:null};
     }
     case ADD_TO_MY_LIST: {

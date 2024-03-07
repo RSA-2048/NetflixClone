@@ -1,5 +1,6 @@
 import { User } from '@/Context/user';
 import { USER_SIGNOUT } from '@/Helpers/Actions';
+import Cookies from 'js-cookie';
 import { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -11,6 +12,8 @@ const ProfileSection = (props: { image: string }) => {
 
     const clickHandler = () => {
         ctxDispatch({ type: USER_SIGNOUT })
+        Cookies.remove("token");
+        localStorage.removeItem("userInfo");
         navigate("/");
     }
 
