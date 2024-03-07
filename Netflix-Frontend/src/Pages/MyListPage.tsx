@@ -10,7 +10,7 @@ const MyListPage= () => {
       <CheckUser/>
       <Title title='My List - Netflix'/>
       <div className="px-14 py-20 ">
-        <h1 className="text-white text-3xl font-bold ">My List</h1>
+        <h1 className="text-white text-3xl font-semibold ">My List</h1>
         <MyListGrid/>
       </div>
 

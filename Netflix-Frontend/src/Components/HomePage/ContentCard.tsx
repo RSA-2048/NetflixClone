@@ -56,7 +56,7 @@ const ContentCard = (props: { content: IContent }) => {
               controls={false}
               disablePictureInPicture
               width={'100%'}
-              height={'60%'}
+              height={'100%'}
               url={props.content.trailer.toString()}
               onClick={navToWatchPage}>
 

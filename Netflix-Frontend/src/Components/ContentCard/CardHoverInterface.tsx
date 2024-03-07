@@ -3,13 +3,19 @@ import { ADD_TO_MY_LIST, REMOVE_FROM_MY_LIST } from '@/Helpers/Actions';
 import { postData } from '@/Helpers/httpRequest';
 import { getError } from '@/Helpers/utils';
 import { IContent } from '@/Models/IContent';
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
+import ContentModal from '../shared/ContentModal';
 
 const CardHoverInterface = (props: { content: IContent }) => {
     const { state: { userInfo }, dispatch } = useContext(User);
     const navigate = useNavigate();
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleButtonClick = () => {
+        setIsModalOpen(true);
+    };
 
     const navToWatchPage = () => {
         navigate(`/watch/${props.content._id.toString()}`)
@@ -50,10 +56,11 @@ const CardHoverInterface = (props: { content: IContent }) => {
                     </button>
                 </div>
                 <div>
-                    <button className='rounded-full border border-gray-100 text-gray-100 px-2'>
-                        <i className="fa-solid fa-angle-down" />
-                    </button>
+                <button onClick={handleButtonClick} className='rounded-full border border-gray-100 text-gray-100 px-2'>
+                    <i className="fa-solid fa-angle-down" />
+                </button>
                 </div>
+                {isModalOpen && <ContentModal />}
             </div>
             <div>
                 <h1 className='text-white text-sm'>{props.content.title}</h1>
