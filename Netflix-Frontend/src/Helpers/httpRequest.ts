@@ -21,7 +21,6 @@ export const getData=async(url:string)=>{
         return data;
 }
 export const postData=async(url:string,body:any)=>{
-        // const {data}=await axios.post(`${baseURL}${url}`,body);
         const {data}=await axios.post(`${baseURL}${url}`,body);
         return data;
 
