@@ -1,7 +1,6 @@
 import { IUserState } from "@/Models/States/IUserState";
-import { USER_SIGNIN, USER_SIGNOUT, ADD_TO_MY_LIST, REMOVE_FROM_MY_LIST,GET_MY_LIST } from "../Helpers/Actions";
+import { USER_SIGNIN, USER_SIGNOUT, ADD_TO_MY_LIST, REMOVE_FROM_MY_LIST} from "../Helpers/Actions";
 import { MyAction } from "@/Models/Action/MyAction";
-import Cookies from "js-cookie";
 
 const userReducer = (state: IUserState, action: MyAction) => {
   const type = action.type;

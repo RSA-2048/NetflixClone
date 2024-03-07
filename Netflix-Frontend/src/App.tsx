@@ -26,7 +26,8 @@ const App=()=> {
       <main className='bg-zinc-900 overflow-x-hidden min-h-screen'>
 
         <NavBar/>
-        <Routes>          
+        <Routes>    
+
         <Route path="/signin" element={<SignInPage />}></Route>
           <Route path="/signup" element={<SignUpPage />}></Route>
           <Route path="/" element={<HomePage />}></Route>
