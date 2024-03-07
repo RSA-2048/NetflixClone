@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 
 
 
-const baseURL=import.meta.env.VITE_BASE_URL ||'http://localhost:3000';
+const baseURL=import.meta.env.VITE_BASE_URL;
 axios.defaults.baseURL = baseURL;
 
 
