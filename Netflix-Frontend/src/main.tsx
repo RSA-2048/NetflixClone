@@ -3,8 +3,8 @@ import App from './App.tsx'
 import axios from 'axios'
 
 
-const baseURL=import.meta.env.VITE_BASE_URL ||'http://localhost:3000';
-axios.defaults.baseURL = baseURL;
+// const baseURL=import.meta.env.VITE_BASE_URL ||'http://localhost:3000';
+// axios.defaults.baseURL = baseURL;
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
 
