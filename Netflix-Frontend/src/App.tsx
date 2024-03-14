@@ -15,6 +15,7 @@ import SearchPage from './Pages/SearchPage.tsx';
 import NavBar from './Components/shared/NavBar.tsx';
 import ResetPasswordPage from './Pages/ResetPasswordPage.tsx';
 import ChangePasswordPage from './Pages/ChangePasswordPage.tsx';
+import AddContentPage from './Pages/AddContentPage.tsx';
 
 const App=()=> {
 
@@ -23,7 +24,7 @@ const App=()=> {
     <UserProvider>
     <HelmetProvider>
     <BrowserRouter>
-      <ToastContainer position="top-right" />
+      <ToastContainer position="top-right" theme='dark'/>
 
       <main className='bg-zinc-900 overflow-x-hidden min-h-screen'>
 
@@ -39,6 +40,7 @@ const App=()=> {
           <Route path="/search/:title" element={<SearchPage />}></Route>
           <Route path="/resetpassword" element={<ResetPasswordPage />}></Route>
           <Route path="/reset/:token" element={<ChangePasswordPage />}></Route>
+          <Route path="/addcontent" element={<AddContentPage/>}></Route>
         </Routes>
       </main>
     </BrowserRouter>

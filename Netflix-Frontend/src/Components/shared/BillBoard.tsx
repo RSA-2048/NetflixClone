@@ -41,7 +41,7 @@ const BillBoard = (props: { isSeries: string }) => {
         {showTrailer && (
           <BillBoardVideo trailer={state.data.trailer.toString()} />
         )}
-        <BillBoardContent imgTitle={state.data.imgTitle} description={state.data.description} _id={state.data._id} />
+        <BillBoardContent content={state.data}/>
       </div> : state.loading ? <Loading></Loading> : <Error message={state.error} />}
 
     </div>

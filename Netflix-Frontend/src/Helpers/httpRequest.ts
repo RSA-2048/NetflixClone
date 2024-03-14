@@ -20,6 +20,12 @@ export const getData=async(url:string)=>{
         const {data}=await axios.get(`${baseURL}${url}`,headers);
         return data;
 }
+export const postDataWithAuth=async(url:string,body:any)=>{
+    const headers=createHeaders();
+    const {data}=await axios.post(`${baseURL}${url}`,body,headers);
+    return data;
+
+}
 export const postData=async(url:string,body:any)=>{
         const {data}=await axios.post(`${baseURL}${url}`,body);
         return data;

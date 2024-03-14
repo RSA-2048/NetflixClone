@@ -42,6 +42,8 @@ const ProfileSection = (props: { image: string }) => {
             {showDropdown && (
                 <div className="absolute right-0 rounded shadow-lg mt-2 py-2 w-48 bg-black bg-opacity-90 z-10">
                     <Link onClick={clickHandler} className="block px-4 py-2 text-white hover:underline" to={'/'}>Sign out</Link>
+                    <Link className='block px-4 py-2 text-white hover:underline' to={'/addcontent'} >Add Content</Link>
+                    
                 </div>
             )}
         </div>
