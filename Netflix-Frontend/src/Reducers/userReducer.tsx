@@ -2,6 +2,7 @@ import { IUserState } from "@/Models/States/IUserState";
 import { USER_SIGNIN, USER_SIGNOUT, ADD_TO_MY_LIST, REMOVE_FROM_MY_LIST} from "../Helpers/Actions";
 import { MyAction } from "@/Models/Action/MyAction";
 
+
 const userReducer = (state: IUserState, action: MyAction) => {
   const type = action.type;
   const payload = action.payload;

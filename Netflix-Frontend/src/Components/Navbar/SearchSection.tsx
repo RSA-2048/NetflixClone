@@ -46,7 +46,7 @@ const SearchSection = () => {
                 <i className="fa-solid fa-magnifying-glass ml-2 text-white"></i>
             </div>
             <input
-                className={`transition-width duration-500 ease-in-out ml-2 bg-transparent text-white placeholder-white outline-none ${isOpen ? 'w-48' : 'w-0'
+                className={`transition-width duration-500 ease-in-out ml-2 bg-transparent text-white placeholder-white outline-none ${isOpen ? 'w-16 md:w-48' : 'w-0'
                     }`}
                 type="text"
                 placeholder="Search..."

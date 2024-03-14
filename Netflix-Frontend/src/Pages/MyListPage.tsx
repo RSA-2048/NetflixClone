@@ -1,22 +1,22 @@
-import MyListGrid from "@/Components/MyLIstGrid";
+import MyListGrid from "@/Components/MyList/MyLIstGrid";
 import CheckUser from "@/Components/shared/CheckUser";
 import Title from "@/Components/shared/Title";
 
 
-const MyListPage= () => {
+const MyListPage = () => {
 
-    return (
-      <div>
-      <CheckUser/>
-      <Title title='My List - Netflix'/>
+  return (
+    <div>
+      <CheckUser />
+      <Title title='My List - Netflix' />
       <div className="px-14 py-20 ">
         <h1 className="text-white text-3xl font-semibold ">My List</h1>
-        <MyListGrid/>
+        <MyListGrid />
       </div>
 
 
-  </div>
-    );
+    </div>
+  );
 };
 
 export default MyListPage;

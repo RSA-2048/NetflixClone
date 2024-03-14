@@ -12,8 +12,8 @@ const ProfileSection = (props: { image: string }) => {
 
     const clickHandler = () => {
         ctxDispatch({ type: USER_SIGNOUT })
+        localStorage.removeItem("userInfo")
         Cookies.remove("token");
-        localStorage.removeItem("userInfo");
         navigate("/");
     }
 

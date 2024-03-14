@@ -59,6 +59,7 @@ const ContentCard = (props: { content: IContent }) => {
               height={'100%'}
               url={props.content.trailer.toString()}
               onClick={navToWatchPage}>
+
             </ReactPlayer>
           }
           {hovered ?
@@ -67,7 +68,6 @@ const ContentCard = (props: { content: IContent }) => {
             </div>
             : <></>}
         </div>
-
       </CardContent>
     </Card >
   );

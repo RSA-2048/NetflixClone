@@ -52,7 +52,6 @@ const FormOrChecker = () => {
         try {
             const emailValue = emailRef.current?.value || "";
             const data = await postData("/api/v1/users/checkemail", { email: emailValue });
-            console.log(data)
             if (data.message === "this email already exists") {
                 setIsEmail(false);
             } else {

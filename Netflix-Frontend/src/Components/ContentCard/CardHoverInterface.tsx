@@ -3,70 +3,114 @@ import { ADD_TO_MY_LIST, REMOVE_FROM_MY_LIST } from '@/Helpers/Actions';
 import { postData } from '@/Helpers/httpRequest';
 import { getError } from '@/Helpers/utils';
 import { IContent } from '@/Models/IContent';
-import { useContext, useState } from 'react'
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
-import ContentModal from '../shared/ContentModal';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../ui/dialog";
+import ReactPlayer from 'react-player';
 
 const CardHoverInterface = (props: { content: IContent }) => {
-    const { state: { userInfo }, dispatch } = useContext(User);
-    const navigate = useNavigate();
-    const [isModalOpen, setIsModalOpen] = useState(false);
+  const { state: { userInfo }, dispatch } = useContext(User);
+  const navigate = useNavigate();
 
-    const handleButtonClick = () => {
-        setIsModalOpen(true);
-    };
+  const navToWatchPage = () => {
+    navigate(`/watch/${props.content._id.toString()}`);
+  };
+  const addToMyList = async () => {
+    try {
+      const data = await postData("/api/v1/users/addmovietomylist", { email: userInfo.email, contentIdToCheck: props.content._id.toString() });
+      dispatch({ type: ADD_TO_MY_LIST, payload: props.content });
+      toast.success(data.message);
+    } catch (error) {
+      toast.error(getError(error));
+    }
+  };
+  const removeToMyList = async () => {
+    try {
+      const data = await postData("/api/v1/users/removeMovieToMyList", { email: userInfo.email, contentIdToCheck: props.content._id.toString() });
+      dispatch({ type: REMOVE_FROM_MY_LIST, payload: props.content });
+      toast.success(data.message);
+    } catch (error) {
+      toast.error(getError(error));
+    }
+  };
 
-    const navToWatchPage = () => {
-        navigate(`/watch/${props.content._id.toString()}`)
-    }
-    const addToMyList = async () => {
-        try {
-            const data = await postData("/api/v1/users/addmovietomylist", { email: userInfo.email, contentIdToCheck: props.content._id.toString() });
-            dispatch({ type: ADD_TO_MY_LIST, payload: props.content })
-            toast.success(data.message);
-        } catch (error) {
-            toast.error(getError(error))
-        }
-    }
-    const removeToMyList = async () => {
-        try {
-            const data = await postData("/api/v1/users/removeMovieToMyList", { email: userInfo.email, contentIdToCheck: props.content._id.toString() });
-            dispatch({ type: REMOVE_FROM_MY_LIST, payload: props.content })
-            toast.success(data.message);
-        } catch (error) {
-            toast.error(getError(error))
-        }
-    }
+  return (
+    <div className='flex flex-col'>
+      <div className='flex flex-row justify-between'>
+        <div>
+          <button onClick={navToWatchPage} className="rounded-full bg-white border border-zinc-900 p-1 w-8 h-8">
+            <i className="fa-solid fa-play"></i>
+          </button>
+          {userInfo ? userInfo.myList.some((item: IContent) => item._id === props.content._id) ? (
+            <button onClick={() => removeToMyList()} className="rounded-full border border-gray-100 text-gray-100 p-1 w-8 h-8 mx-1">
+              <i className="fa-solid fa-minus"></i>
+            </button>
+          ) : (
+            <button onClick={() => addToMyList()} className="rounded-full border border-gray-100 text-gray-100 p-1 w-8 h-8 mx-1">
+              <i className="fa-solid fa-plus"></i>
+            </button>
+          ) : null}
 
-    return (
-        <div className='flex flex-col'>
-            <div className='flex flex-row justify-between'>
-                <div>
-                    <button onClick={navToWatchPage} className="rounded-full bg-white border border-zinc-900 px-2 mr-0.5">
-                        <i className="fa-solid fa-play"></i>
-                    </button>
-                    {userInfo ? userInfo.myList.some((item: IContent) => item._id === props.content._id) ? (
-                        <button onClick={() => removeToMyList()} className="rounded-full border border-gray-100 text-gray-100 px-2 mr-0.5"><i className="fa-solid fa-minus" /></button>
-                    ) : (
-                        <button onClick={() => addToMyList()} className="rounded-full border border-gray-100 text-gray-100 px-2 mr-0.5"><i className="fa-solid fa-plus" /></button>
-                    ) : <></>}
-                    <button className='rounded-full border border-gray-100 text-gray-100 px-2 mr-0.5'>
-                        <i className='fa-solid fa-thumbs-up' />
-                    </button>
-                </div>
-                <div>
-                <button onClick={handleButtonClick} className='rounded-full border border-gray-100 text-gray-100 px-2'>
-                    <i className="fa-solid fa-angle-down" />
-                </button>
-                </div>
-                {isModalOpen && <ContentModal />}
-            </div>
-            <div>
-                <h1 className='text-white text-sm'>{props.content.title}</h1>
-            </div>
+          <button className="rounded-full border border-gray-100 text-gray-100 p-1 w-8 h-8 mx-1">
+            <i className="fa-solid fa-thumbs-up"></i>
+          </button>
         </div>
-    )
-}
+        <div>
+          <Dialog>
+            <DialogTrigger>
+              <button className='rounded-full border border-gray-100 text-gray-100 p-1 w-8 h-8'>
+                <i className="fa-solid fa-angle-down"></i>
+              </button>
+            </DialogTrigger>
+            <DialogContent>
+              {/* <DialogHeader>
+                <DialogTitle>Are you absolutely sure?</DialogTitle>
+                <DialogDescription>
+                  This action cannot be undone. This will permanently delete your account
+                  and remove your data from our servers.
+                </DialogDescription>
+              </DialogHeader> */}
+              <div className='aspect-[16/9]'>
+                <ReactPlayer
+                  className="pointer-events-none"
+                  muted
+                  playing
+                  loop
+                  controls={false}
+                  disablePictureInPicture
+                  width={'100%'}
+                  height={'100%'}
+                  url={props.content.trailer.toString()}
+                  onClick={navToWatchPage}>
+                </ReactPlayer>
+              </div>
+              <div>
+                <h1 className='text-white text-xl font-bold pl-6 pr-6'>{props.content.title}</h1>
+              </div>
+              <div>
+                <p className='text-green-500 pl-6 pr-6'>{props.content.year}</p>
+                <p className='text-cyan-200 pl-6 pr-6'>{props.content.duration}</p>
+              </div>
+              <div>
+                <p className='text-white pl-6 pb-6 pr-6'>{props.content.description}</p>
+              </div>
+            </DialogContent>
+          </Dialog>
+        </div>
+      </div>
+      <div>
+        <h1 className='text-white text-sm'>{props.content.title}</h1>
+      </div>
+    </div>
+  );
+};
 
-export default CardHoverInterface
+export default CardHoverInterface;

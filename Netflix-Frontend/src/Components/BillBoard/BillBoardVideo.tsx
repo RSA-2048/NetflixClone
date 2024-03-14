@@ -9,7 +9,7 @@ const BillBoardVideo=(props:{trailer:String})=> {
   return (
     <>
     <ReactPlayer
-                className="pointer-events-none"
+                className="pointer-events-none" 
                 muted
                 playing
                 loop

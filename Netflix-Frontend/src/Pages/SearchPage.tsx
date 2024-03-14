@@ -7,6 +7,8 @@ import GridView from '@/Components/shared/GridView';
 import { useParams } from 'react-router-dom';
 import CheckUser from '@/Components/shared/CheckUser';
 import Title from '@/Components/shared/Title';
+import Loading from '@/Components/shared/Loading';
+import Error from '@/Components/shared/Error';
 
 
 
@@ -27,7 +29,11 @@ const SearchPage=() =>{
         <CheckUser/>
         <Title title='Search - Netflix'/>
             <div className="px-14 py-20 ">
-            {state.data? <GridView myList={state.data}></GridView> : <p>error()</p>}
+            {state.data? <GridView myList={state.data}></GridView> 
+            :state.loading?<Loading></Loading>:
+            <Error message={state.error}></Error> }
+
+
             </div>
         </div>
   )

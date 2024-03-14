@@ -10,7 +10,7 @@ dotenv.config();
 
 const app: Express = express();
 
-app.use(cors());//dose nothing at the moment
+app.use(cors());
 app.use(express.json());//parses JSONs
 app.use(express.urlencoded({ extended: false }));//this is common practice for urlencoded
 
@@ -34,4 +34,4 @@ mongoose.connect(mongoConnect)
     })
   }).catch(err => console.log(err.message));
 
-export default app;
+  export default app;

@@ -1,3 +1,5 @@
+import Error from '@/Components/shared/Error';
+import Loading from '@/Components/shared/Loading';
 import Title from '@/Components/shared/Title';
 import reducerHook from '@/Hooks/reducerHook';
 import { IContent } from '@/Models/IContent';
@@ -56,7 +58,7 @@ const WatchPage = () => {
             width={'100%'}
             height={'100%'}
           />
-        </div> : <div></div>}
+        </div> : state.loading?<Loading></Loading>:<Error message={state.error}></Error>}
     </div>
   );
 };
