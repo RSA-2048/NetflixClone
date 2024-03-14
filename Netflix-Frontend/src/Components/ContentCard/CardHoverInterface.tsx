@@ -9,9 +9,6 @@ import { toast } from "react-toastify";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
   DialogTrigger,
 } from "../ui/dialog";
 import ReactPlayer from 'react-player';
